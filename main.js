@@ -204,18 +204,116 @@ hãy tạo ra mảng mới newUsers
       {human:"D4",gender:"nam"}
    ]
  */
-
+function createNewUser(users){
+    let arr=[];
+    for(let i=0; i<users.length;i++){
+        if(i===1){
+            continue;
+        }else {
+            const user={
+                human: users[i].name+users[i].id ,
+                gender: users[i].gender,
+            }
+            arr.push(user);
+        }
+    }
+    return arr;
+}
+const users = [
+  {
+    id: 1,
+    name: "A",
+    gender: "nam",
+  },
+  {
+    id: 2,
+    name: "B",
+    gender: "nữ",
+  },
+  {
+    id: 3,
+    name: "C",
+    gender: "nam",
+  },
+  {
+    id: 4,
+    name: "D",
+    gender: "nam",
+  },
+];
+console.log(createNewUser(users));
 /**
  * câu 8: const number = [2, -5, 6, -7, -4, 7, -1, -1];
         a: tính trung bình cộng số âm
         b: in ra danh sách các số âm lớn hơn giá trị tính ở ý a
         c: tìm số âm lớn nhất trong mảng
  */
+function isNegativeNumber(number){
+    if(number>=0){
+        return false;
+    }
+    return true;
+}
+function avgs(numbers){
+    let sum=0;
+    let count=0;
+    for(value of numbers){
+        if(isNegativeNumber(value)){
+            sum+=value;
+            count++;
+        }
+    }
+    return sum/count;
+}
+const number = [2, -5, 6, -7, -4, 7, -1, -1];
+function negativeBigger(numbers){
+    let avg=avgs(number);
+    let max=avg;
+    let arr=[];
+    for(value of numbers){
+        if(value>avg&&isNegativeNumber(value)&&value>max){
+            max=value;
+            console.log(max);
+        }
+    }
+  
+}
+negativeBigger(number);
 
+function filterNegativeNumber(numbers){
+    let arr=[];
+    for(value of numbers){
+        if(isNegativeNumber(value)){
+             arr.push(value);
+        }
+    }
+    return arr;
+}
+function findMaxNegative(numbers){
+    let arr=filterNegativeNumber(numbers);
+ let max=arr[0];
+ for(value of arr){
+    if(value>max){
+        max=value;
+    }
+ }
+ return max;
+}
+console.log("Max: "+findMaxNegative(number));
 /**
  *  câu 9: Loại bỏ các phần tử trùng lặp trong mảng let numbers = [1, 2, 3, 4, 2, 5, 6, 1, 3]; tìm hiểu includes hoặc indexOF hoặc ko dùng 2 hàm đó
  */
-
+let numbersx = [1, 2, 3, 4, 2, 5, 6, 1, 3]; 
+function removeRepeatation(numbers){
+    let arr=[];
+ for(value of numbers){
+    if(!arr.includes(value)){
+        arr.push(value);
+    }
+ }
+ return arr;
+}
+console.log(removeRepeatation(numbersx));
 /**
  * Câu 10: Viết 1 hàm nhận vào 1 mảng và 1 số nguyên dương n
  * sau đó trả về mảng mới chứa các mảng con có kích thước n.
