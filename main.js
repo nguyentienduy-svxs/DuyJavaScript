@@ -321,8 +321,28 @@ console.log(removeRepeatation(numbersx));
  * kích thước n = 3
  * viết 1 hàm tachMangCao(mangSo,3)
  * kết quả: [[1,2,3],[4,5,6],[7,8,9]]
+ * Con cach 2 cua chat gpt;
  */
-
+function as(arr,n){
+   let array=[];
+   while(arr.length!==0){
+     let arr2=[];
+    let count=0;
+    while(arr.length!==0){
+        
+        arr2.push(arr.shift());
+        count++;
+        
+        if(count===n){
+             array.push(arr2);
+             break;
+        }
+       
+    }
+   }
+   return array;
+}
+console.log(as([1,2,3,4,5,6,7,8,9],3));
 /**
  * Câu 11: đếm số lượng phần tử trong mảng
  * const lang = ["php","js","c++","java","php","js","php"]
