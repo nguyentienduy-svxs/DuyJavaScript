@@ -342,7 +342,14 @@ function as(arr,n){
    }
    return array;
 }
-console.log(as([1,2,3,4,5,6,7,8,9],3));
+function as2(arrays, number){
+    let arr=[];
+    for(let i=0;i<arrays.length;i+=number){ /*notice */
+        arr.push(arrays.slice(i,i+number));
+    }
+    return arr;
+}
+console.log(as2([1,2,3,4,5,6,7,8,9],5));
 /**
  * Câu 11: đếm số lượng phần tử trong mảng
  * const lang = ["php","js","c++","java","php","js","php"]
@@ -354,3 +361,12 @@ console.log(as([1,2,3,4,5,6,7,8,9],3));
  *    c++:1
  *  }
  */
+function list(arrays){
+    let result={};
+    for(value of arrays){
+        result[value]=(result[value]??0) + 1; /* notice*/
+    }
+    return result;
+    
+}
+console.log(list(["php","js","c++","java","php","js","php"]))
