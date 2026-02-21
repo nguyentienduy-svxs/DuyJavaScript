@@ -349,24 +349,156 @@ function as2(arrays, number){
     }
     return arr;
 }
-console.log(as2([1,2,3,4,5,6,7,8,9],5));
+console.log(as2([1,2,3,4,5,6,7,8,9],3));
 /**
  * Câu 11: đếm số lượng phần tử trong mảng
  * const lang = ["php","js","c++","java","php","js","php"]
  * output 
- *  {
+ *  { key: value,
  *    php:3,
  *    js:2,
  *    java:1,
  *    c++:1
  *  }
  */
-function list(arrays){
-    let result={};
+function countApear(arrays){
+    const languages={};
+    for(value of arrays){ /* La gia tri trong mang se dong vai tro la key */
+        languages[value]=(languages[value]??0)+1;
+    }
+    return languages;
+}
+console.log(countApear(["php","js","c++","java","php","js","php"]));
+
+
+/**
+ * Bài 1: Tìm phần tử xuất hiện nhiều nhất trong mảng
+ * input = 1,2,2,3,3,3,4,4,4,4,4]
+ * ouput = 3
+ * gợi ý: Dùng object để đếm
+ */
+function findMostAppear(arrays){
+    const count={};
+    let max=0;
+    let result;
     for(value of arrays){
-        result[value]=(result[value]??0) + 1; /* notice*/
+        count[value]=(count[value]??0)+1;
+    }
+    for(key in count){
+          if(count[key]>max){
+            max=count[key];
+            result=key;
+          }
     }
     return result;
-    
 }
-console.log(list(["php","js","c++","java","php","js","php"]))
+console.log("La so: "+findMostAppear([1,2,2,3,3,3,3,3,4,4,4,4,4]));
+/**
+ * Bài 2: Xóa tất cả số âm trong mảng 
+ * [3, -1, 5, -2] → [3, 5] (Mảng mới)
+ */
+function deleteWay1(arrays){
+    const arr=[];
+    for(value of arrays){
+        if(value >= 0){
+            arr.push(value);
+        }
+    }
+    return arr;
+}
+function deleteWay2(arrays){
+    let arr=[];
+   arr= arrays.filter((value,index)=> value>=0);
+    return arr;
+}
+console.log("Cach 1: "+deleteWay1([3, -1, 5, -2]));
+console.log("Cach 2: "+ deleteWay2([3, -1, 5, -2]));
+
+
+
+/**
+ * Bài 3: Đếm số phần tử âm trong mảng
+ */
+function countWay1(arrays){
+    let count=0;
+    for(value of arrays){
+        if(value<0){
+            count++;
+        }
+    }
+    return count;
+}
+function countWay2(arrays){
+    let count=0;
+    let arr=[];
+    arr=arrays.filter((currentValue,index)=> {
+        return currentValue<0;
+    }
+    )
+    return arr.length;
+}
+console.log("So am la: "+ countWay1([3, -1, 5, -2, 0, -1]));
+console.log("So am la: "+ countWay2([3, -1, 5, -2, 0, -1]))
+/**
+ * Bài 4: Nhân đôi mỗi phần tử trong mảng ( tạo mảng mới)
+ * 
+ */
+function x2(arrays){
+    let arr=arrays.map((currentValue)=>{
+       return currentValue=currentValue*2; /* phai return */
+    });
+    return arr;
+}
+console.log(x2([3, -1, 5, -2, 0, -1]));
+/**
+ * Bài 5: Thay thế số âm bằng 0
+ * [3,-2,5,-1] → [3,0,5,0]
+ */
+function replaceNegativeToZero(arrays){
+    let arr=arrays;
+    for(let i=0;i<arr.length;i++){
+        if(arr[i]<0){
+            arr[i]=0;
+        }
+    }
+    return arr;
+}
+console.log(replaceNegativeToZero([3, -1, 5, -2, 0, -1]));
+/**
+ * Bài 6: Tìm số chẵn lớn nhất trong mảng
+ * [3, 8, 2, 11, 6] → 8
+ */
+function isEvenNumber(number){
+    if(number%2===0){
+        return true;
+    }
+    return false;
+}
+function findMax(arrays){
+    let max=arrays[0];
+    for(value of arrays){
+        if(isEvenNumber(value)&&value>max){
+            max=value;
+        }
+    }
+    return max;
+}
+console.log(findMax([3, 8, 2, 11, 6]));
+
+
+/**
+ * Bài 7: Tìm số lớn thứ 2 trong mảng
+ * let arr = [5, 9, 2, 8, 7]; => 8
+ * 
+ */
+function findTheSecondBiggest(arrays){
+    let arr= arrays.sort((a,b)=> b-a);
+    let max=arr[0];
+    for(let i=0;i<arr.length;i++){
+        if(arr[i]!==max){
+            return arr[i];
+        }
+        
+    }
+}
+console.log("So lon thu 2 la: "+findTheSecondBiggest([5, 9, 2, 8, 7, 10, 11]));
